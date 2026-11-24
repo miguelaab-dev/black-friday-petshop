@@ -101,3 +101,76 @@ for slug, l in LOJAS.items():
     Path(slug).mkdir(exist_ok=True)
     Path(slug, "index.html").write_text(html)
     print(slug, "ok")
+
+
+# ---- Outros comércios ----
+def item(n, d, de, por, img, alt, tipo="Produto"):
+    return {"n": n, "d": d, "de": de, "por": por, "img": img, "alt": alt, "tipo": tipo}
+
+OUTROS = {
+    "otica-da-lapa": dict(
+        cores=dict(BRAND="#173a7a", BRANDINK="#ffffff", ACCENT="#ffd23f", ACCENTINK="#14213d", PRICE="#173a7a", TINT="#eef2fa"),
+        cfg=dict(
+            nome="Ótica da Lapa", whatsapp="551138343536", fim=FIM, fimTexto=FIM_TXT,
+            logo="img/logo.png", nota={"valor": "5,0", "total": "46"},
+            lede="Óculos de grau, de sol e lentes multifocais com desconto. Reserve pelo WhatsApp.",
+            hero={"src": S + "mulher-oculos.jpg", "alt": "Mulher sorrindo de óculos de grau", "pos": "30% 35%"},
+            strip={"src": S + "mulher-oculos-2.jpg", "alt": "Mulher sorrindo de óculos", "titulo": "Desde 1961 na Lapa"},
+            info=[["Onde", "Rua Dronsfield, 163, Lapa"], ["Horário", "Segunda a sexta, das 9h às 18h. Sábado, das 9h às 13h"], ["Atendimento", "Personalizado, com acompanhamento depois da entrega"]],
+            ofertas=[
+                item("Óculos Completo Visão Simples", "Armação + lentes com antirreflexo", 690, 449.9, S + "armacao-mesa.jpg", "Óculos de grau sobre a mesa"),
+                item("Lentes Multifocais", "Adaptação acompanhada pela equipe", 1490, 1090, S + "armacao-tartaruga.jpg", "Armação tartaruga sobre a mesa"),
+                item("Filtro de Luz Azul", "Pra quem passa o dia no computador", 390, 279.9, S + "mulher-oculos-3.jpg", "Mulher sorrindo de óculos"),
+                item("Óculos de Sol", "Modelos com proteção UV", 450, 299.9, S + "oculos-sol.jpg", "Óculos de sol"),
+                item("Lentes de Contato", "Caixa com 6 lentes mensais", 290, 219.9, S + "lente-contato.jpg", "Estojos de lente de contato"),
+                item("Exame de Vista", "Com optometrista parceiro", 150, 79.9, S + "exame-vista.jpg", "Exame de vista", "Serviço"),
+            ],
+        ),
+    ),
+    "oticas-mero": dict(
+        cores=dict(BRAND="#2a170e", BRANDINK="#fcf2e6", ACCENT="#e9c9a3", ACCENTINK="#2a170e", PRICE="#7a3f1d", TINT="#fcf2e6"),
+        cfg=dict(
+            nome="Óticas Mero", whatsapp="5511990046505", fim=FIM, fimTexto=FIM_TXT,
+            logo=None, nota={"valor": "5,0", "total": "501"},
+            depoimentos=[["Atendimento foi ótimo, explicam tudo com detalhes e tem preço justo.", "Aline Ikemori, pelo Google"]],
+            lede="Armações, lentes Zeiss, Hoya e Varilux e óculos de sol com desconto. Faça seu orçamento pelo WhatsApp.",
+            hero={"src": "img/hero.jpg", "alt": "Fachada da Óticas Mero", "pos": "40% 50%"},
+            strip={"src": S + "mulher-oculos-3.jpg", "alt": "Mulher sorrindo de óculos", "titulo": "Na Carlos Weber e na Pompeia"},
+            info=[["Onde", "Rua Carlos Weber, 1139, Vila Leopoldina"], ["Lentes", "Zeiss, Hoya e Varilux, com até 2 anos de garantia"], ["Reparos", "Ajustes, plaquetas e parafusos"]],
+            ofertas=[
+                item("Armações MR", "Linha própria, design atual", 390, 195, "img/mr.jpg", "Campanha das armações MR"),
+                item("Óculos Completo Visão Simples", "Armação + lentes com antirreflexo", 790, 549.9, S + "armacao-mesa.jpg", "Óculos de grau sobre a mesa"),
+                item("Lentes Multifocais Varilux", "Com medição digital na loja", 1890, 1390, S + "armacao-tartaruga.jpg", "Armação tartaruga sobre a mesa"),
+                item("Óculos de Sol Polarizado", "Proteção UV total", 490, 329.9, S + "oculos-sol.jpg", "Óculos de sol"),
+                item("Lentes com Filtro de Luz Azul", "Pra tela do dia a dia", 420, 299.9, S + "mulher-oculos-2.jpg", "Mulher sorrindo de óculos"),
+                item("Lentes de Contato", "Caixa com 6 lentes mensais", 290, 219.9, S + "lente-contato.jpg", "Estojos de lente de contato"),
+            ],
+        ),
+    ),
+    "lapa-suplementos": dict(
+        cores=dict(BRAND="#111418", BRANDINK="#ffffff", ACCENT="#3aa0d8", ACCENTINK="#ffffff", PRICE="#1f7fb8", TINT="#eef6fb"),
+        cfg=dict(
+            nome="Lapa Suplementos", whatsapp="5511914532063", fim=FIM, fimTexto=FIM_TXT,
+            logo="img/logo.png", nota={"valor": "4,9", "total": "104"},
+            lede="Whey, creatina, pré-treino e barras com preço de Black Friday. Peça pelo WhatsApp e retire na loja.",
+            hero={"src": S + "mulher-academia.jpg", "alt": "Mulher sorrindo depois do treino", "pos": "40% 30%"},
+            strip={"src": S + "homem-treino.jpg", "alt": "Homem treinando na academia", "titulo": "A maior loja de suplementos da região"},
+            info=[["Onde", "Rua Clélia, 1746, Vila Romana, com estacionamento"], ["Horário", "Segunda a sexta, das 8h às 20h. Sábado, das 10h às 15h"], ["Estoque", "Confirme pelo WhatsApp antes de ir"]],
+            ofertas=[
+                item("Whey 100% Pure 900 g", "Integralmedica, sabor baunilha", 189.9, 129.9, "img/whey.jpg", "Pacote de Whey 100% Pure"),
+                item("Creatina Hardcore 150 g", "Integralmedica, 100% creatina", 99.9, 64.9, "img/creatina.jpg", "Pote de Creatina Hardcore"),
+                item("Creatina Hardcore 500 g", "Refil econômico", 249.9, 169.9, "img/creatina-500.jpg", "Refil de Creatina Hardcore 500 g"),
+                item("Pré-Treino Prime 300 g", "Integralmedica, vermelho sangue", 149.9, 99.9, "img/pre-treino.jpg", "Pote de Pré-Treino Prime"),
+                item("Beef Protein 900 g", "Zero lactose, 30 g de proteína", 199.9, 139.9, "img/beef.jpg", "Pote de Beef Protein"),
+                item("Protein Crisp Ovomaltine 12 un.", "12 g de proteína por barra", 119.9, 79.9, "img/barra.jpg", "Caixa de barras Protein Crisp"),
+            ],
+        ),
+    ),
+}
+for slug, l in OUTROS.items():
+    html = tpl.replace("__NOME__", l["cfg"]["nome"]).replace("__CONFIG__", json.dumps(l["cfg"], ensure_ascii=False, indent=2))
+    for k, v in l["cores"].items():
+        html = html.replace("__" + k + "__", v)
+    Path(slug).mkdir(exist_ok=True)
+    Path(slug, "index.html").write_text(html)
+    print(slug, "ok")
