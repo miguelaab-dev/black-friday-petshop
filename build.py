@@ -205,7 +205,7 @@ LOJAS3 = {
     "blue-bike": dict(
         cores=dict(BRAND="#1f2328", BRANDINK="#ffffff", ACCENT="#1f7ae0", ACCENTINK="#ffffff", PRICE="#1665c0", TINT="#eaf2fc"),
         cfg=dict(
-            nome="Blue Bike", whatsapp="551138359666", fim=FIM, fimTexto=FIM_TXT,
+            nome="Blue Bike", whatsapp="5511996220458", fim=FIM, fimTexto=FIM_TXT,
             logo="img/logo.png",
             lede="Bikes, bike fit, revisão e acessórios com desconto. Reserve pelo WhatsApp.",
             hero={"src": S + "loja-bike-2.jpg", "alt": "Bicicletas penduradas numa bikeshop", "pos": "40% 50%"},
