@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Black Friday Metrópole Pet Shop</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Nunito+Sans:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+/* VOICE: vitrine de bairro, alegre, calorosa, preço grande
+   IDEA: vitrine com fotos de tutores e pets felizes e etiquetas de oferta
+   PICTURE: foto grande de tutora sorrindo com o cachorro, ocupando metade do topo
+   COLOUR and TYPE: azul cobalto dominante, amarelo sol de apoio, coral de destaque; Baloo 2 + Nunito Sans
+   LAYOUT: topo dividido texto/foto, grade de 6 ofertas com foto, faixa com foto e informações, barra fixa de WhatsApp */
+:root{color-scheme:light dark;
+--bg:light-dark(#ffffff,#0f1530);--ink:light-dark(#141a33,#f3f5ff);--soft:light-dark(#5a6283,#aab2d6);
+--blue:#2340c9;--deep:light-dark(#2340c9,#1a2b8a);--sun:#ffd23f;--coral:#ff5a36;--card:light-dark(#ffffff,#18204a);--line:light-dark(#e3e7fa,#27306a);--wa:#1faa59;--tint:light-dark(#f2f4ff,#141b40)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 "Nunito Sans",system-ui,sans-serif;overflow-x:clip;padding-bottom:84px}
+h1,h2,.price{font-family:"Baloo 2",system-ui,sans-serif}
+img{display:block;max-width:100%}
+.band{padding:clamp(28px,4vw,64px) max(5vw,16px)}
+.wrap{max-width:1240px;margin:0 auto}
+.hero{background:var(--deep);color:#fff}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:center}
+.htext{display:flex;flex-direction:column;justify-content:center}
+.shop{font-weight:800;font-size:15px;opacity:.9;margin:0 0 6px}
+h1{font-size:clamp(38px,5.4vw,62px);line-height:1.02;margin:0 0 12px;text-wrap:balance}
+h1 span{color:var(--sun)}
+.lede{font-size:17px;max-width:32em;margin:0 0 22px;opacity:.92}
+.count{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 10px}
+.cell{background:#fff;color:#141a33;border-radius:14px;padding:8px 12px;min-width:72px;text-align:center}
+.cell b{display:block;font:800 clamp(28px,4vw,38px)/1 "Baloo 2",sans-serif;font-variant-numeric:tabular-nums}
+.cell small{font-size:13px;color:#5a6283}
+.until{font-size:14px;opacity:.85;margin:0}
+.hphoto{position:relative;min-height:clamp(320px,34vw,460px);border-radius:28px;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.3)}
+.hphoto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:35% 40%}
+.sticker{position:absolute;left:clamp(12px,3vw,32px);bottom:clamp(12px,3vw,32px);background:var(--sun);color:#141a33;border-radius:18px;padding:10px 16px;font:800 20px/1.1 "Baloo 2",sans-serif;transform:rotate(-4deg);box-shadow:0 8px 24px rgba(0,0,0,.25);animation:pop .7s ease-out both .2s}
+.sticker small{display:block;font:700 13px "Nunito Sans",sans-serif}
+@keyframes pop{from{transform:rotate(-4deg) scale(.6);opacity:0}to{transform:rotate(-4deg) scale(1);opacity:1}}
+@media(prefers-reduced-motion:reduce){.sticker{animation:none}}
+.head{display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+h2{font-size:clamp(30px,4vw,40px);line-height:1.05;margin:0}
+.head p{margin:0;color:var(--soft);max-width:30em}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.grid{grid-template-columns:minmax(0,1fr)}}
+.p{background:var(--card);border:1px solid var(--line);border-radius:22px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 6px 20px rgba(20,26,51,.06)}
+.pic{position:relative;aspect-ratio:4/3;background:var(--tint)}
+.pic img{width:100%;height:100%;object-fit:cover}
+.off{position:absolute;top:12px;left:12px;background:var(--coral);color:#fff;font-weight:800;font-size:15px;border-radius:999px;padding:4px 12px}
+.body{padding:16px;display:flex;flex-direction:column;gap:8px;flex:1}
+.p h3{font-size:17px;margin:0;line-height:1.3}
+.p .d{color:var(--soft);font-size:14px;margin:0}
+.was{color:var(--soft);font-size:14px;white-space:nowrap}.was s{margin-left:4px}
+.price{font-size:34px;font-weight:800;line-height:1;white-space:nowrap;color:var(--blue)}
+:root[data-theme=dark] .price{color:var(--sun)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]) .price{color:var(--sun)}}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;min-height:48px;border-radius:14px;background:var(--wa);color:#fff;font-weight:800;text-decoration:none;font-size:16px;margin-top:auto}
+.btn:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+.btn svg{width:20px;height:20px;flex:none}
+.strip{background:var(--tint)}
+.strip .wrap{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(20px,4vw,48px);align-items:center}
+.strip img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:24px}
+.info{display:grid;gap:18px;margin-top:18px}
+.info div{border-top:2px solid var(--line);padding-top:12px}
+.info h3{margin:0 0 2px;font-size:17px}.info p{margin:0;color:var(--soft)}
+.note{font-size:13px;color:var(--soft);text-align:center;margin:0;padding:20px 16px 24px}
+.bar{position:fixed;left:0;right:0;bottom:0;padding:12px max(5vw,16px) calc(12px + env(safe-area-inset-bottom));background:var(--bg);border-top:1px solid var(--line);z-index:5}
+.barin{max-width:1240px;margin:0 auto;display:flex;gap:12px;align-items:center;justify-content:space-between}
+.bar span{font-weight:800;font-size:15px}
+.bar .btn{margin:0;padding:0 18px;flex:none}
+@media(max-width:760px){.hero .wrap,.strip .wrap{grid-template-columns:1fr}.hphoto{min-height:280px;order:-1;border-radius:20px}.bar span{font-size:14px}}
+</style>
+</head>
+<body>
+<header class="band hero">
+  <div class="wrap">
+    <div class="htext">
+      <p class="shop" id="shopName">Metrópole Pet Shop</p>
+      <h1>Black Friday com até <span id="maxOff">40%</span> off pro seu pet</h1>
+      <p class="lede">Ração, petiscos, acessórios e banho com preço de Black Friday. Escolha a oferta, toque no botão e a gente separa pra você pelo WhatsApp.</p>
+      <div class="count" aria-live="polite">
+        <div class="cell"><b id="cd">0</b><small>dias</small></div>
+        <div class="cell"><b id="ch">00</b><small>horas</small></div>
+        <div class="cell"><b id="cm">00</b><small>min</small></div>
+        <div class="cell"><b id="cs">00</b><small>seg</small></div>
+      </div>
+      <p class="until" id="until">Ofertas válidas até domingo, 29/11, às 23h59.</p>
+    </div>
+    <div class="hphoto">
+      <img src="../img/hero.jpg" alt="Tutora sorrindo enquanto o cachorro lhe dá um beijo">
+      <div class="sticker">Só até domingo<small>estoque limitado</small></div>
+    </div>
+  </div>
+</header>
+
+<main class="band">
+  <div class="wrap">
+    <div class="head">
+      <h2>Ofertas da semana</h2>
+      <p>Reserve pelo WhatsApp e retire na loja ou receba em casa.</p>
+    </div>
+    <div class="grid" id="grid"></div>
+  </div>
+</main>
+
+<section class="band strip">
+  <div class="wrap">
+    <img src="../img/cliente.jpg" alt="Tutora sorrindo com seu beagle no colo">
+    <div>
+      <h2>Feito pra quem é do bairro</h2>
+      <div class="info">
+        <div><h3>Retirada na loja</h3><p id="addr">Rua Carlos Weber, 608, Vila Leopoldina</p></div>
+        <div><h3>Entrega no bairro</h3><p>Combine a entrega pelo WhatsApp.</p></div>
+        <div><h3>Pagamento</h3><p>Pix, cartão e dinheiro.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<p class="note">Prévia de exemplo feita para Metrópole Pet Shop. Produtos, preços e fotos são ilustrativos e podem ser trocados.</p>
+
+<div class="bar"><div class="barin">
+  <span>Dúvida? Fala com a gente</span>
+  <a class="btn" id="barBtn" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 2s.8 2.3 1 2.5c.1.2 1.7 2.6 4.1 3.6 1.5.7 2.1.7 2.9.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.3-.1z"/></svg>WhatsApp</a>
+</div></div>
+
+<script>
+{
+  // Troque só este bloco para fazer a página de outra loja
+  const LOJA = {
+    nome: "Metrópole Pet Shop",
+    whatsapp: "5511992594990",
+    fim: "2026-11-29T23:59:59-03:00",
+    fimTexto: "domingo, 29/11, às 23h59",
+    endereco: "Rua Carlos Weber, 608, Vila Leopoldina"
+  };
+  const PRODUTOS = [
+    {n:"Ração Golden Special Cães Adultos 15 kg", d:"Sabor frango e carne", de:289.9, por:199.9, img:"../img/racao.jpg", alt:"Pacote de ração Golden Special 15 kg"},
+    {n:"Areia Pipicat Multi-Cat 12 kg", d:"Grãos extrafinos, torrões firmes", de:59.9, por:39.9, img:"../img/areia.jpg", alt:"Pacote de areia Pipicat Multi-Cat 12 kg"},
+    {n:"Cama Redonda Xadrez Azul", d:"Tecido lavável, para cães e gatos", de:149.9, por:89.9, img:"../img/caminha.jpg", alt:"Cama redonda azul com borda xadrez"},
+    {n:"Kit 3 Bifinhos Origem Natural Cordeiro", d:"3 pacotes de 60 g", de:69.9, por:44.9, img:"../img/petiscos.jpg", alt:"Pacote de bifinho Origem Natural sabor cordeiro"},
+    {n:"Arranhador de Papelão com Bola e Catnip", d:"Moldura de madeira, bolinha giratória", de:99.9, por:69.9, img:"../img/arranhador.jpg", alt:"Arranhador de papelão com moldura de madeira e bolinha laranja"},
+    {n:"Banho e Tosa Higiênica", d:"Porte pequeno, com agendamento", de:85, por:59.9, img:"../img/banho.jpg", alt:"Cachorro sendo secado com luva de banho"}
+  ];
+  const brl = v => "R$ " + v.toFixed(2).replace(".", ",");
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+  const wa = msg => "https://wa.me/" + LOJA.whatsapp + "?text=" + encodeURIComponent(msg);
+  const waIcon = document.querySelector("#barBtn svg").outerHTML;
+
+  document.getElementById("shopName").textContent = LOJA.nome;
+  document.getElementById("addr").textContent = LOJA.endereco;
+  document.getElementById("until").textContent = "Ofertas válidas até " + LOJA.fimTexto + ".";
+  document.getElementById("barBtn").href = wa("Oi! Vi a página de Black Friday da " + LOJA.nome + " e queria tirar uma dúvida.");
+
+  let maxOff = 0;
+  document.getElementById("grid").innerHTML = PRODUTOS.map(p => {
+    const off = Math.round((1 - p.por / p.de) * 100);
+    maxOff = Math.max(maxOff, off);
+    const msg = "Oi! Quero a oferta de Black Friday: " + p.n + " por " + brl(p.por) + ". Ainda tem?";
+    return '<article class="p"><div class="pic"><img loading="lazy" src="' + esc(p.img) + '" alt="' + esc(p.alt) + '"><span class="off">-' + off + '%</span></div>' +
+      '<div class="body"><h3>' + esc(p.n) + '</h3><p class="d">' + esc(p.d) + '</p>' +
+      '<div><div class="was">De<s>' + brl(p.de) + '</s></div><div class="price">' + brl(p.por) + '</div></div>' +
+      '<a class="btn" href="' + esc(wa(msg)) + '" target="_blank" rel="noopener">' + waIcon + 'Quero este</a></div></article>';
+  }).join("");
+  document.getElementById("maxOff").textContent = maxOff + "%";
+
+  const end = new Date(LOJA.fim).getTime();
+  const pad = n => String(n).padStart(2, "0");
+  const els = ["cd","ch","cm","cs"].map(id => document.getElementById(id));
+  const tick = () => {
+    const s = Math.max(0, Math.floor((end - Date.now()) / 1000));
+    if (s === 0) document.getElementById("until").textContent = "Ofertas encerradas. Obrigado!";
+    els[0].textContent = Math.floor(s / 86400);
+    els[1].textContent = pad(Math.floor(s % 86400 / 3600));
+    els[2].textContent = pad(Math.floor(s % 3600 / 60));
+    els[3].textContent = pad(s % 60);
+  };
+  tick();
+  const timer = setInterval(tick, 1000);
+}
+</script>
+</body>
+</html>
