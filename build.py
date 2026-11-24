@@ -174,3 +174,86 @@ for slug, l in OUTROS.items():
     Path(slug).mkdir(exist_ok=True)
     Path(slug, "index.html").write_text(html)
     print(slug, "ok")
+
+
+# ---- Bikes e brinquedos ----
+B = "../img/bike/"
+Y = "../img/toys/"
+BIKE_ITENS = [
+    item("Bicicleta Aro 29 Shimano 21v", "Freio a disco, quadro de alumínio", 2299, 1799, B + "mtb-vermelha.jpg", "Bicicleta aro 29 vermelha"),
+    item("Bicicleta Aro 29 Entrada", "Pra começar a pedalar", 1699, 1299, B + "mtb-cinza.jpg", "Bicicleta aro 29 cinza"),
+    item("Bicicleta Infantil Aro 16", "Com rodinhas, de 4 a 6 anos", 899, 649, B + "infantil.jpg", "Bicicleta infantil amarela aro 16"),
+    item("Capacete MTB", "Regulagem na nuca, ventilado", 249.9, 169.9, B + "capacete.jpg", "Capacete de ciclismo azul-marinho"),
+    item("Farol Recarregável USB", "Pra pedalar à noite com segurança", 179.9, 119.9, B + "farol.jpg", "Farol de bicicleta preto"),
+    item("Cadeado Corrente com Capa", "Corrente de aço revestida", 149.9, 99.9, B + "cadeado.jpg", "Cadeado de corrente com capa de tecido"),
+]
+REVISAO = item("Revisão Completa", "Limpeza, regulagem de freios e marchas", 220, 149.9, S + "oficina.jpg", "Bancada de oficina de bicicleta", "Serviço")
+
+LOJAS3 = {
+    "bike-leopoldina": dict(
+        cores=dict(BRAND="#111111", BRANDINK="#ffffff", ACCENT="#f2d43a", ACCENTINK="#111111", PRICE="#111111", TINT="#f7f4e1"),
+        cfg=dict(
+            nome="Bike Leopoldina", whatsapp="551127377797", fim=FIM, fimTexto=FIM_TXT,
+            logo="img/logo.png", nota={"valor": "4,8", "total": "435"},
+            lede="Bicicletas, acessórios e revisão com preço de Black Friday. Reserve pelo WhatsApp.",
+            hero={"src": S + "loja-bike.jpg", "alt": "Loja de bicicletas com rodas e bikes na parede", "pos": "40% 50%"},
+            strip={"src": S + "ciclista.jpg", "alt": "Ciclista pedalando na cidade", "titulo": "Bikeshop e oficina na Vila Leopoldina"},
+            info=[["Onde", "Avenida Imperatriz Leopoldina, 1092"], ["Horário", "Segunda a sexta, das 9h às 19h. Sábado, das 9h às 14h"], ["Oficina", "Revisão, peças e acessórios em geral"]],
+            ofertas=[BIKE_ITENS[0], BIKE_ITENS[2], REVISAO, BIKE_ITENS[3], BIKE_ITENS[4], BIKE_ITENS[5]],
+        ),
+    ),
+    "blue-bike": dict(
+        cores=dict(BRAND="#1f2328", BRANDINK="#ffffff", ACCENT="#1f7ae0", ACCENTINK="#ffffff", PRICE="#1665c0", TINT="#eaf2fc"),
+        cfg=dict(
+            nome="Blue Bike", whatsapp="551138359666", fim=FIM, fimTexto=FIM_TXT,
+            logo="img/logo.png",
+            lede="Bikes, bike fit, revisão e acessórios com desconto. Reserve pelo WhatsApp.",
+            hero={"src": S + "loja-bike-2.jpg", "alt": "Bicicletas penduradas numa bikeshop", "pos": "40% 50%"},
+            strip={"src": S + "ciclistas.jpg", "alt": "Ciclistas pedalando na cidade", "titulo": "Desde 1996 no Alto da Lapa"},
+            info=[["Onde", "Avenida Diógenes Ribeiro de Lima, 3040, Alto da Lapa"], ["Revenda autorizada", "Specialized, Caloi e Groove"], ["Oficina", "Revisão, bike fit e peças"]],
+            ofertas=[
+                BIKE_ITENS[0], REVISAO,
+                item("Bike Fit", "Ajuste da bike ao seu corpo", 450, 349.9, S + "ciclistas.jpg", "Ciclista pedalando", "Serviço"),
+                BIKE_ITENS[3], BIKE_ITENS[4], BIKE_ITENS[5],
+            ],
+        ),
+    ),
+    "energy-bike": dict(
+        cores=dict(BRAND="#0f3d2e", BRANDINK="#ffffff", ACCENT="#7ee06d", ACCENTINK="#0f3d2e", PRICE="#16704f", TINT="#ecf8ef"),
+        cfg=dict(
+            nome="Energy Bike Shop", whatsapp="5511982837228", fim=FIM, fimTexto=FIM_TXT,
+            logo=None,
+            lede="Bicicletas, acessórios e revisão com desconto. Reserve pelo WhatsApp.",
+            hero={"src": S + "oficina.jpg", "alt": "Bancada de oficina de bicicleta", "pos": "50% 50%"},
+            strip={"src": S + "ciclista.jpg", "alt": "Ciclista pedalando na cidade", "titulo": "Bike shop na Rua Pio XI"},
+            info=[["Onde", "Rua Pio XI, 371, Alto da Lapa"], ["Horário", "Segunda a sexta, das 10h às 19h"], ["Oficina", "Revisão e manutenção com quem entende"]],
+            ofertas=[REVISAO, BIKE_ITENS[1], BIKE_ITENS[2], BIKE_ITENS[3], BIKE_ITENS[4], BIKE_ITENS[5]],
+        ),
+    ),
+    "di-brincare": dict(
+        cores=dict(BRAND="#2f6fd6", BRANDINK="#ffffff", ACCENT="#ffcd1f", ACCENTINK="#1d2b4f", PRICE="#e2352b", TINT="#fff6dc"),
+        cfg=dict(
+            nome="Di Brincare Brinquedos", whatsapp="5511972021212", fim=FIM, fimTexto=FIM_TXT,
+            logo="img/logo.png", nota={"valor": "4,9", "total": "115"},
+            lede="Brinquedos com preço de Black Friday, já pensando no Natal. Peça pelo WhatsApp e receba em casa.",
+            hero={"src": S + "crianca.jpg", "alt": "Criança brincando animada", "pos": "60% 40%"},
+            strip={"src": S + "blocos.jpg", "alt": "Criança montando blocos coloridos", "titulo": "Presente de Natal resolvido no bairro"},
+            info=[["Onde", "Rua Passo da Pátria, 790, loja B, Alto da Lapa"], ["Horário", "Todos os dias, inclusive domingo"], ["Entrega", "Entrega rápida pra toda São Paulo"]],
+            ofertas=[
+                item("LEGO City Van", "Com 2 minifiguras, a partir de 5 anos", 299.9, 219.9, Y + "lego.jpg", "Caixa LEGO City van amarela"),
+                item("Jogo War", "O clássico de estratégia, a partir de 10 anos", 219.9, 159.9, Y + "war.jpg", "Caixa do jogo War"),
+                item("Play-Doh Números", "6 potes de massinha e moldes", 79.9, 54.9, Y + "playdoh.jpg", "Kit Play-Doh Números"),
+                item("Pelúcia Tigre com Filhote", "Realista e macia", 189.9, 129.9, Y + "pelucia.jpg", "Pelúcia de tigre com filhote"),
+                item("Meu Primeiro Patinete", "3 rodas, a partir de 3 anos", 179.9, 129.9, Y + "patinete.jpg", "Patinete infantil azul e laranja"),
+                item("Hot Wheels (kit com 5)", "Carrinhos sortidos", 69.9, 49.9, Y + "hotwheels.jpg", "Carrinho Hot Wheels na embalagem"),
+            ],
+        ),
+    ),
+}
+for slug, l in LOJAS3.items():
+    html = tpl.replace("__NOME__", l["cfg"]["nome"]).replace("__CONFIG__", json.dumps(l["cfg"], ensure_ascii=False, indent=2))
+    for k, v in l["cores"].items():
+        html = html.replace("__" + k + "__", v)
+    Path(slug).mkdir(exist_ok=True)
+    Path(slug, "index.html").write_text(html)
+    print(slug, "ok")
