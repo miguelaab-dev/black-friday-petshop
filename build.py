@@ -153,7 +153,7 @@ OUTROS = {
             nome="Lapa Suplementos", whatsapp="5511914532063", fim=FIM, fimTexto=FIM_TXT,
             logo="img/logo.png", nota={"valor": "4,9", "total": "104"},
             lede="Whey, creatina, pré-treino e barras com preço de Black Friday. Peça pelo WhatsApp e retire na loja.",
-            hero={"src": S + "mulher-academia.jpg", "alt": "Mulher sorrindo depois do treino", "pos": "40% 30%"},
+            hero={"src": "img/hero.jpg", "alt": "Whey, creatina e pré-treino em oferta", "pos": "50% 50%"},
             strip={"src": S + "homem-treino.jpg", "alt": "Homem treinando na academia", "titulo": "A maior loja de suplementos da região"},
             info=[["Onde", "Rua Clélia, 1746, Vila Romana, com estacionamento"], ["Horário", "Segunda a sexta, das 8h às 20h. Sábado, das 10h às 15h"], ["Estoque", "Confirme pelo WhatsApp antes de ir"]],
             ofertas=[
