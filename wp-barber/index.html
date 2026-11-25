@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Fim de ano WP Barber</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Nunito+Sans:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+/* VOICE: vitrine de bairro na identidade da própria loja
+   IDEA: a vitrine da loja com etiquetas de oferta
+   PICTURE: foto da loja ou de tutor com pet no topo, logo da loja em destaque
+   COLOUR and TYPE: cores da marca vindas da configuração; Baloo 2 + Nunito Sans
+   LAYOUT: topo dividido texto/foto, grade 3x2 de ofertas, faixa de informações, barra fixa de WhatsApp */
+:root{color-scheme:light;--brand:#0d0d0d;--brand-ink:#fff;--accent:#c9a35a;--accent-ink:#0d0d0d;--price:#9a7a35;
+--bg:#ffffff;--ink:#17191f;--soft:#5b616e;--card:#ffffff;--line:#e6e8ee;--tint:#f5f1e8;--wa:#1faa59}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 "Nunito Sans",system-ui,sans-serif;overflow-x:clip;padding-bottom:84px}
+h1,h2,.price{font-family:"Baloo 2",system-ui,sans-serif}
+img{display:block;max-width:100%}
+.band{padding:clamp(28px,4vw,64px) max(5vw,16px)}
+.wrap{max-width:1240px;margin:0 auto}
+.hero{background:var(--brand);color:var(--brand-ink)}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:center}
+.htext{display:flex;flex-direction:column;justify-content:center}
+.logo{background:#fff;border-radius:18px;padding:10px 14px;align-self:flex-start;margin:0 0 18px;box-shadow:0 8px 24px rgba(0,0,0,.15)}
+.logo img{height:clamp(56px,7vw,84px);width:auto}
+.shop{font-weight:800;font-size:15px;opacity:.9;margin:0 0 6px}
+h1{font-size:clamp(36px,5vw,60px);line-height:1.04;margin:0 0 12px;text-wrap:balance}
+h1 #maxOff{color:var(--accent)}
+.logo.round{border-radius:50%;padding:6px}.logo.round img{border-radius:50%}
+.lede{font-size:17px;max-width:32em;margin:0 0 22px;opacity:.95}
+.count{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 10px}
+.cell{background:#fff;color:#17191f;border-radius:14px;padding:8px 12px;min-width:72px;text-align:center}
+.cell b{display:block;font:800 clamp(28px,4vw,38px)/1 "Baloo 2",sans-serif;font-variant-numeric:tabular-nums}
+.cell small{font-size:13px;color:#5b616e}
+.until{font-size:14px;opacity:.9;margin:0}
+.hphoto{position:relative;min-height:clamp(320px,34vw,460px);border-radius:28px;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.25)}
+.hphoto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:var(--hpos,50% 40%)}
+.sticker{position:absolute;left:clamp(12px,3vw,28px);bottom:clamp(12px,3vw,28px);background:var(--accent);color:var(--accent-ink);border-radius:18px;padding:10px 16px;font:800 20px/1.1 "Baloo 2",sans-serif;transform:rotate(-4deg);box-shadow:0 8px 24px rgba(0,0,0,.25);animation:pop .7s ease-out both .2s}
+.sticker small{display:block;font:700 13px "Nunito Sans",sans-serif}
+@keyframes pop{from{transform:rotate(-4deg) scale(.6);opacity:0}to{transform:rotate(-4deg) scale(1);opacity:1}}
+@media(prefers-reduced-motion:reduce){.sticker{animation:none}}
+.head{display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+h2{font-size:clamp(30px,4vw,40px);line-height:1.05;margin:0}
+.head p{margin:0;color:var(--soft);max-width:30em}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.grid{grid-template-columns:minmax(0,1fr)}}
+.p{background:var(--card);border:1px solid var(--line);border-radius:22px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 6px 20px rgba(20,26,51,.06)}
+.pic{position:relative;aspect-ratio:4/3;background:#fff}
+.pic img{width:100%;height:100%;object-fit:cover}
+.off{position:absolute;top:12px;left:12px;background:var(--accent);color:var(--accent-ink);font-weight:800;font-size:15px;border-radius:999px;padding:4px 12px}
+.kind{position:absolute;top:12px;right:12px;background:rgba(255,255,255,.92);color:#17191f;font-weight:800;font-size:13px;border-radius:999px;padding:4px 10px}
+.body{padding:16px;display:flex;flex-direction:column;gap:8px;flex:1}
+.p h3{font-size:17px;margin:0;line-height:1.3}
+.p .d{color:var(--soft);font-size:14px;margin:0}
+.was{color:var(--soft);font-size:14px;white-space:nowrap}.was s{margin-left:4px}
+.price{font-size:34px;font-weight:800;line-height:1;white-space:nowrap;color:var(--price)}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;min-height:48px;border-radius:14px;background:var(--wa);color:#fff;font-weight:800;text-decoration:none;font-size:16px;margin-top:auto}
+.btn:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.btn svg{width:20px;height:20px;flex:none}
+.strip{background:var(--tint)}
+.strip .wrap{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(20px,4vw,48px);align-items:center}
+.strip img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:24px}
+.info{display:grid;gap:18px;margin-top:18px}
+.info div{border-top:2px solid var(--line);padding-top:12px}
+.info h3{margin:0 0 2px;font-size:17px}.info p{margin:0;color:var(--soft)}
+.cta{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:22px}
+.btn.big{background:var(--accent);color:var(--accent-ink);padding:0 26px;min-height:52px;font-size:17px;margin:0}
+.rating{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:700}
+.rating .stars{color:#ffd23f;letter-spacing:1px;font-size:17px}
+.rating:empty{display:none}
+.steps{padding-top:0}
+.how{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.how li{display:flex;align-items:center;gap:12px;background:var(--tint);border-radius:16px;padding:14px 16px;font-weight:800}
+.how b{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--brand);color:var(--brand-ink);font-family:"Baloo 2",sans-serif}
+.quotes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:14px}
+.quotes:empty{display:none}
+.quotes figure{margin:0;border:1px solid var(--line);border-radius:16px;padding:16px 18px}
+.quotes blockquote{margin:0 0 8px;font-size:16px}
+.quotes figcaption{color:var(--soft);font-size:14px}
+@media(max-width:700px){.how,.quotes{grid-template-columns:minmax(0,1fr)}}
+.note{font-size:13px;color:var(--soft);text-align:center;margin:0;padding:20px 16px 24px}
+.bar{position:fixed;left:0;right:0;bottom:0;padding:12px max(5vw,16px) calc(12px + env(safe-area-inset-bottom));background:#fff;border-top:1px solid var(--line);z-index:5}
+.barin{max-width:1240px;margin:0 auto;display:flex;gap:12px;align-items:center;justify-content:space-between}
+.bar span{font-weight:800;font-size:15px}
+.bar .btn{margin:0;padding:0 18px;flex:none}
+@media(max-width:760px){.strip .wrap{grid-template-columns:1fr}.bar span{font-size:14px}.hero .wrap{display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px}.htext{display:contents}.logo{order:-2;align-self:center;margin:0;padding:12px 18px;border-radius:22px}.logo img{height:104px}.hphoto{order:-1;width:100%;min-height:260px;border-radius:20px}.shop{margin:4px 0 0}h1{margin:0}.lede{margin:0 auto}.until{margin-top:-4px}.count,.cta{justify-content:center}.cta{margin-top:4px}}
+</style>
+</head>
+<body>
+<header class="band hero">
+  <div class="wrap">
+    <div class="htext">
+      <div class="logo" id="logoBox"><img id="logo" alt=""></div>
+      <p class="shop" id="shopName"></p>
+      <h1><span id="h1pre">Black Friday</span> com até <span id="maxOff">40%</span> off</h1>
+      <p class="lede" id="lede"></p>
+      <div class="count" aria-live="polite">
+        <div class="cell"><b id="cd">0</b><small>dias</small></div>
+        <div class="cell"><b id="ch">00</b><small>horas</small></div>
+        <div class="cell"><b id="cm">00</b><small>min</small></div>
+        <div class="cell"><b id="cs">00</b><small>seg</small></div>
+      </div>
+      <p class="until" id="until"></p>
+      <div class="cta">
+        <a class="btn big" id="heroBtn" href="#ofertas">Ver ofertas</a>
+        <div class="rating" id="rating"></div>
+      </div>
+    </div>
+    <div class="hphoto">
+      <img id="heroImg" alt="" fetchpriority="high" decoding="async">
+      <div class="sticker"><span id="stk1">Só até domingo</span><small id="stk2">vagas e estoque limitados</small></div>
+    </div>
+  </div>
+</header>
+
+<main class="band" id="ofertas">
+  <div class="wrap">
+    <div class="head">
+      <h2>Ofertas da semana</h2>
+      <p id="headNote">Toque em "Quero este" e a gente confirma pelo WhatsApp.</p>
+    </div>
+    <div class="grid" id="grid"></div>
+  </div>
+</main>
+
+<section class="band steps"><div class="wrap"><ol class="how"><li><b>1</b>Escolha a oferta</li><li><b>2</b>Toque em "Quero este"</li><li><b>3</b>Confirme pelo WhatsApp</li></ol><div class="quotes" id="quotes"></div></div></section>
+
+<section class="band strip">
+  <div class="wrap">
+    <img id="stripImg" alt="">
+    <div>
+      <h2 id="stripTitle"></h2>
+      <div class="info" id="info"></div>
+    </div>
+  </div>
+</section>
+
+<p class="note" id="note"></p>
+
+<div class="bar"><div class="barin">
+  <span>Dúvida? Fala com a gente</span>
+  <a class="btn" id="barBtn" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 2s.8 2.3 1 2.5c.1.2 1.7 2.6 4.1 3.6 1.5.7 2.1.7 2.9.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.3-.1z"/></svg>WhatsApp</a>
+</div></div>
+
+<script>
+{
+  // Configuração da loja: troque só este bloco
+  const LOJA = {
+  "nome": "WP Barber",
+  "whatsapp": "5511992387574",
+  "fim": "2026-12-20T23:59:59-03:00",
+  "fimTexto": "20/12, com horário marcado",
+  "titulo": "Fim de ano",
+  "sticker": [
+    "Agende já",
+    "vagas limitadas até o Natal"
+  ],
+  "logo": "img/logo.jpg",
+  "logoRedondo": false,
+  "lede": "Corte e barba na régua pras festas com pacotes de fim de ano. Agende pelo WhatsApp.",
+  "hero": {
+    "src": "../img/serv/barbearia.jpg",
+    "alt": "Barbearia com cadeiras clássicas",
+    "pos": "50% 40%"
+  },
+  "strip": {
+    "src": "../img/serv/barbeiro.jpg",
+    "alt": "Barbeiro atendendo cliente",
+    "titulo": "Barbearia na Lapa"
+  },
+  "info": [
+    [
+      "Onde",
+      "Lapa, São Paulo"
+    ],
+    [
+      "Agendamento",
+      "Pelo WhatsApp, com horário marcado"
+    ],
+    [
+      "Pagamento",
+      "Pix, cartão e dinheiro"
+    ]
+  ],
+  "ofertas": [
+    {
+      "n": "Corte",
+      "d": "Degradê, social ou na tesoura",
+      "de": 60,
+      "por": 48,
+      "img": "../img/serv/degrade.jpg",
+      "alt": "Barbeiro fazendo degradê",
+      "tipo": "Serviço"
+    },
+    {
+      "n": "Barba",
+      "d": "Com toalha quente",
+      "de": 45,
+      "por": 36,
+      "img": "../img/serv/barba.jpg",
+      "alt": "Barba sendo aparada na tesoura",
+      "tipo": "Serviço"
+    },
+    {
+      "n": "Corte + Barba",
+      "d": "O combo mais pedido",
+      "de": 95,
+      "por": 75,
+      "img": "../img/serv/barbeiro.jpg",
+      "alt": "Barbeiro finalizando corte",
+      "tipo": "Serviço"
+    },
+    {
+      "n": "Pacote 4 Cortes",
+      "d": "Um por semana até o Ano Novo",
+      "de": 220,
+      "por": 169,
+      "img": "../img/serv/barbeiro-2.jpg",
+      "alt": "Barbeiro penteando o cliente",
+      "tipo": "Serviço"
+    },
+    {
+      "n": "Corte Infantil",
+      "d": "Pra criançada nas festas",
+      "de": 50,
+      "por": 39,
+      "img": "../img/serv/degrade.jpg",
+      "alt": "Corte degradê",
+      "tipo": "Serviço"
+    },
+    {
+      "n": "Sobrancelha",
+      "d": "Na navalha ou pinça",
+      "de": 25,
+      "por": 18,
+      "img": "../img/serv/barba.jpg",
+      "alt": "Barbeiro com tesoura",
+      "tipo": "Serviço"
+    }
+  ]
+};
+  const brl = v => "R$ " + v.toFixed(2).replace(".", ",");
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+  const wa = msg => "https://wa.me/" + LOJA.whatsapp + "?text=" + encodeURIComponent(msg);
+  const $ = id => document.getElementById(id);
+  const waIcon = document.querySelector("#barBtn svg").outerHTML;
+
+  $("shopName").textContent = LOJA.nome;
+  if (LOJA.titulo) $("h1pre").textContent = LOJA.titulo;
+  if (LOJA.sticker) { $("stk1").textContent = LOJA.sticker[0]; $("stk2").textContent = LOJA.sticker[1]; }
+  if (LOJA.logoRedondo) $("logoBox").classList.add("round");
+  $("lede").textContent = LOJA.lede;
+  $("until").textContent = "Ofertas válidas até " + LOJA.fimTexto + ".";
+  if (LOJA.logo) { $("logo").src = LOJA.logo; $("logo").alt = "Logo " + LOJA.nome; } else { $("logoBox").remove(); }
+  $("heroImg").src = LOJA.hero.src; $("heroImg").alt = LOJA.hero.alt;
+  if (LOJA.hero.pos) document.documentElement.style.setProperty("--hpos", LOJA.hero.pos);
+  $("stripImg").src = LOJA.strip.src; $("stripImg").alt = LOJA.strip.alt;
+  $("stripTitle").textContent = LOJA.strip.titulo;
+  $("info").innerHTML = LOJA.info.map(i => "<div><h3>" + esc(i[0]) + "</h3><p>" + esc(i[1]) + "</p></div>").join("");
+  $("note").textContent = "Prévia de exemplo feita para " + LOJA.nome + ". Serviços, produtos, preços e fotos são ilustrativos e podem ser trocados.";
+  if (LOJA.nota) $("rating").innerHTML = '<span class="stars" aria-hidden="true">★★★★★</span><span>' + esc(LOJA.nota.valor) + " no Google · " + esc(LOJA.nota.total) + " avaliações</span>";
+  $("quotes").innerHTML = (LOJA.depoimentos || []).map(q => "<figure><blockquote>“" + esc(q[0]) + "”</blockquote><figcaption>" + esc(q[1]) + "</figcaption></figure>").join("");
+  $("barBtn").href = wa("Oi! Vi a página de Black Friday da " + LOJA.nome + " e queria tirar uma dúvida.");
+
+  let maxOff = 0;
+  $("grid").innerHTML = LOJA.ofertas.map(p => {
+    const off = Math.round((1 - p.por / p.de) * 100);
+    maxOff = Math.max(maxOff, off);
+    const msg = "Oi! Quero a oferta de Black Friday: " + p.n + " por " + brl(p.por) + ". Ainda tem?";
+    return '<article class="p"><div class="pic"><img loading="lazy" decoding="async" width="900" height="675" src="' + esc(p.img) + '" alt="' + esc(p.alt) + '"><span class="off">-' + off + '%</span><span class="kind">' + esc(p.tipo) + '</span></div>' +
+      '<div class="body"><h3>' + esc(p.n) + '</h3><p class="d">' + esc(p.d) + '</p>' +
+      '<div><div class="was">De<s>' + brl(p.de) + '</s></div><div class="price">' + brl(p.por) + '</div></div>' +
+      '<a class="btn" href="' + esc(wa(msg)) + '" target="_blank" rel="noopener">' + waIcon + 'Quero este</a></div></article>';
+  }).join("");
+  $("maxOff").textContent = maxOff + "%";
+
+  const end = new Date(LOJA.fim).getTime();
+  const pad = n => String(n).padStart(2, "0");
+  const tick = () => {
+    const s = Math.max(0, Math.floor((end - Date.now()) / 1000));
+    if (s === 0) $("until").textContent = "Ofertas encerradas. Obrigado!";
+    $("cd").textContent = Math.floor(s / 86400);
+    $("ch").textContent = pad(Math.floor(s % 86400 / 3600));
+    $("cm").textContent = pad(Math.floor(s % 3600 / 60));
+    $("cs").textContent = pad(s % 60);
+  };
+  tick();
+  const timer = setInterval(tick, 1000);
+}
+</script>
+</body>
+</html>

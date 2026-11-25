@@ -94,7 +94,7 @@ LOJAS = {
 
 tpl = Path("template.html").read_text()
 for slug, l in LOJAS.items():
-    html = tpl.replace("__NOME__", l["cfg"]["nome"]).replace("__CONFIG__", json.dumps(l["cfg"], ensure_ascii=False, indent=2))
+    html = tpl.replace("__TITULO__", l["cfg"].get("titulo", "Black Friday")).replace("__NOME__", l["cfg"]["nome"]).replace("__CONFIG__", json.dumps(l["cfg"], ensure_ascii=False, indent=2))
     for k, v in l["cores"].items():
         html = html.replace("__" + k + "__", v)
     assert "__" not in html.split("<script>")[0] or "__" not in html, slug
@@ -168,7 +168,7 @@ OUTROS = {
     ),
 }
 for slug, l in OUTROS.items():
-    html = tpl.replace("__NOME__", l["cfg"]["nome"]).replace("__CONFIG__", json.dumps(l["cfg"], ensure_ascii=False, indent=2))
+    html = tpl.replace("__TITULO__", l["cfg"].get("titulo", "Black Friday")).replace("__NOME__", l["cfg"]["nome"]).replace("__CONFIG__", json.dumps(l["cfg"], ensure_ascii=False, indent=2))
     for k, v in l["cores"].items():
         html = html.replace("__" + k + "__", v)
     Path(slug).mkdir(exist_ok=True)
@@ -251,9 +251,118 @@ LOJAS3 = {
     ),
 }
 for slug, l in LOJAS3.items():
-    html = tpl.replace("__NOME__", l["cfg"]["nome"]).replace("__CONFIG__", json.dumps(l["cfg"], ensure_ascii=False, indent=2))
+    html = tpl.replace("__TITULO__", l["cfg"].get("titulo", "Black Friday")).replace("__NOME__", l["cfg"]["nome"]).replace("__CONFIG__", json.dumps(l["cfg"], ensure_ascii=False, indent=2))
     for k, v in l["cores"].items():
         html = html.replace("__" + k + "__", v)
     Path(slug).mkdir(exist_ok=True)
     Path(slug, "index.html").write_text(html)
     print(slug, "ok")
+
+
+# ---- Serviços: pacotes de fim de ano ----
+V = "../img/serv/"
+FIM2 = "2026-12-20T23:59:59-03:00"
+FIM2_TXT = "20/12, com horário marcado"
+STK = ["Agende já", "vagas limitadas até o Natal"]
+def sv(n, d, de, por, img, alt): return item(n, d, de, por, V + img, alt, "Serviço")
+INFO_PADRAO = lambda onde: [["Onde", onde], ["Agendamento", "Pelo WhatsApp, com horário marcado"], ["Pagamento", "Pix, cartão e dinheiro"]]
+
+PET = [sv("Banho Porte Pequeno", "Com secagem e perfume", 70, 55, "cao-banho.jpg", "Cachorro sendo secado depois do banho"),
+       sv("Banho e Tosa", "Tosa na tesoura ou máquina", 120, 95, "poodle-tesoura.jpg", "Cachorro branco sendo tosado na tesoura"),
+       sv("Pacote 4 Banhos", "Um por semana até o Natal", 260, 199, "shihtzu.jpg", "Cachorrinho de bandana depois do banho"),
+       sv("Hidratação de Pelo", "Pelo macio e brilhante pras festas", 50, 39, "poodle-tosa.jpg", "Poodle sendo escovado"),
+       sv("Tosa Higiênica", "Patas, barriga e rostinho", 50, 39, "cao-banho.jpg", "Cachorro no banho"),
+       sv("Banho de Gato", "Com manejo tranquilo", 110, 89, "gato-tosa.jpg", "Gato persa sendo tosado")]
+UNHA = [sv("Pé e Mão", "Esmaltação tradicional", 80, 65, "manicure.jpg", "Manicure fazendo unhas"),
+        sv("Esmaltação em Gel", "Dura até 3 semanas", 90, 75, "unha-rosa.jpg", "Unhas rosadas em gel"),
+        sv("Alongamento em Fibra", "Pra chegar nas festas impecável", 180, 149, "unha-vermelha.jpg", "Unhas longas vermelhas decoradas"),
+        sv("Manutenção do Alongamento", "A cada 3 semanas", 120, 99, "esmalte.jpg", "Esmalte sendo aplicado"),
+        sv("Pacote Natal e Ano Novo", "2 pé e mão, um pra cada festa", 160, 119, "manicure.jpg", "Manicure em atendimento"),
+        sv("Spa dos Pés", "Esfoliação e hidratação", 90, 69, "unha-rosa.jpg", "Mão com unhas rosadas")]
+CABELO = [sv("Escova", "Lisa ou modelada", 70, 55, "escova.jpg", "Cabeleireira fazendo escova"),
+          sv("Corte Feminino", "Com lavagem e finalização", 120, 95, "cabeleireira.jpg", "Cabeleireira finalizando corte"),
+          sv("Hidratação Profunda", "Reconstrução pros fios", 90, 69, "mulher-cacheada.jpg", "Mulher de cabelo cacheado sorrindo"),
+          sv("Coloração", "Raiz ou global", 220, 179, "coloracao.jpg", "Coloração de cabelo"),
+          sv("Mechas e Luzes", "Iluminado pras festas", 450, 369, "coloracao.jpg", "Cabelo loiro com mechas"),
+          sv("Escova + Pé e Mão", "Combo pronto pra festa", 150, 119, "mulher-sorrindo.jpg", "Mulher sorrindo arrumada")]
+BARBA = [sv("Corte", "Degradê, social ou na tesoura", 60, 48, "degrade.jpg", "Barbeiro fazendo degradê"),
+         sv("Barba", "Com toalha quente", 45, 36, "barba.jpg", "Barba sendo aparada na tesoura"),
+         sv("Corte + Barba", "O combo mais pedido", 95, 75, "barbeiro.jpg", "Barbeiro finalizando corte"),
+         sv("Pacote 4 Cortes", "Um por semana até o Ano Novo", 220, 169, "barbeiro-2.jpg", "Barbeiro penteando o cliente"),
+         sv("Corte Infantil", "Pra criançada nas festas", 50, 39, "degrade.jpg", "Corte degradê"),
+         sv("Sobrancelha", "Na navalha ou pinça", 25, 18, "barba.jpg", "Barbeiro com tesoura")]
+COSTURA = [sv("Barra de Calça", "Pronta em até 2 dias", 30, 24, "maquina-costura.jpg", "Máquina de costura"),
+           sv("Ajuste de Vestido de Festa", "Pra ficar perfeito no corpo", 120, 95, "costura.jpg", "Peça sendo costurada"),
+           sv("Ajuste de Cintura", "Calça, saia ou bermuda", 45, 36, "fitas.jpg", "Fitas métricas coloridas"),
+           sv("Troca de Zíper", "Calças, jaquetas e vestidos", 35, 28, "maquina-costura.jpg", "Agulha da máquina de costura"),
+           sv("Pacote 3 Barras", "Pra família toda", 90, 65, "costura.jpg", "Costura na máquina"),
+           sv("Ajuste de Terno", "Mangas e barra", 140, 109, "fitas.jpg", "Fitas métricas")]
+
+def loja(nome, wa, logo, redondo, cores, lede, hero, strip, onde, ofertas, nota=None, info=None):
+    cfg = dict(nome=nome, whatsapp=wa, fim=FIM2, fimTexto=FIM2_TXT, titulo="Fim de ano", sticker=STK,
+               logo=logo, logoRedondo=redondo, lede=lede, hero=hero, strip=strip,
+               info=info or INFO_PADRAO(onde), ofertas=ofertas)
+    if nota: cfg["nota"] = nota
+    return dict(cores=cores, cfg=cfg)
+def C(b, bi, a, ai, p, t): return dict(BRAND=b, BRANDINK=bi, ACCENT=a, ACCENTINK=ai, PRICE=p, TINT=t)
+H = lambda img, alt, pos="50% 40%": {"src": V + img, "alt": alt, "pos": pos}
+STp = lambda img, alt, t: {"src": V + img, "alt": alt, "titulo": t}
+
+LOJAS4 = {
+ "happy-pet-spa": loja("Happy Pet Spa", "5511976170101", "img/logo.jpg", False, C("#1f4fc6","#fff","#e4ef2a","#14213d","#1f4fc6","#eef3ff"),
+    "Banho, tosa e muito carinho pro seu pet ficar lindo nas festas. Agende pelo WhatsApp.", H("poodle-tesoura.jpg","Cachorro sendo tosado"),
+    STp("shihtzu.jpg","Cachorrinho de bandana","Cuidado que se sente no pelo"), "Rua Afonso Sardinha, 478, Lapa", PET),
+ "ark-pet": loja("Ark Pet Lapa", "5511989351655", "img/logo.jpg", False, C("#2b2b2b","#fff","#f08a24","#fff","#d9700f","#fff3e6"),
+    "Banho, tosa e cuidados pro seu pet com desconto de fim de ano. Agende pelo WhatsApp.", H("cao-banho.jpg","Cachorro depois do banho"),
+    STp("poodle-tosa.jpg","Poodle sendo escovado","Tudo pro seu pet na Lapa"), "Lapa, São Paulo", PET),
+ "petpex": loja("Petpex", "5511941404897", "img/logo.jpg", True, C("#0a9fd4","#fff","#f6d21a","#1d2b4f","#0a7fae","#e8f8fd"),
+    "Centro de estética animal com pacotes de fim de ano. Agende pelo WhatsApp.", H("shihtzu.jpg","Cachorrinho de bandana"),
+    STp("poodle-tesoura.jpg","Cachorro sendo tosado","Banho e tosa com carinho e paciência"), "Lapa, São Paulo", PET),
+ "xodo-pet": loja("Xodó Pet Grooming", "5511965983898", "img/logo.jpg", True, C("#128f8b","#fff","#ffc94a","#1d2b2b","#0f7672","#e9f7f6"),
+    "Grooming caprichado pro seu xodó chegar lindo no Natal. Agende pelo WhatsApp.", H("poodle-tesoura.jpg","Cachorro sendo tosado na tesoura"),
+    STp("cao-banho.jpg","Cachorro depois do banho","Seu pet tratado como xodó"), "Lapa, São Paulo", PET),
+ "studio-toda-bonita": loja("Studio Toda Bonita", "5511994681088", None, False, C("#b03a6f","#fff","#ffd1e3","#5a1035","#b03a6f","#fdeef4"),
+    "Cabelo e unhas prontos pras festas, com pacotes de fim de ano. Agende pelo WhatsApp.", H("cabeleireira.jpg","Cabeleireira sorrindo no salão"),
+    STp("mulher-cacheada.jpg","Mulher sorrindo","Linda pro Natal e pro Ano Novo"), "Lapa, São Paulo", CABELO),
+ "debroi-hair": loja("Debroi Hair", "551136453948", "img/logo.jpg", False, C("#142422","#fff","#d9c58b","#142422","#7a6328","#f6f2e6"),
+    "Corte, cor e escova pras festas com pacotes de fim de ano. Agende pelo WhatsApp.", H("escova.jpg","Escova no salão"),
+    STp("mulher-sorrindo.jpg","Mulher sorrindo","Espaço de beleza na Lapa"), "Lapa, São Paulo", CABELO),
+ "alessandra-lima": loja("Alessandra Lima Espaço Mulher", "551132139804", None, False, C("#6a3d6e","#fff","#f3c6d6","#3d1f40","#6a3d6e","#f8eef6"),
+    "Cabelo, unhas e cuidados pras festas com pacotes de fim de ano. Agende pelo WhatsApp.", H("cabeleireira.jpg","Cabeleireira no salão"),
+    STp("mulher-cacheada.jpg","Mulher sorrindo","Um espaço feito pra mulher"), "Lapa, São Paulo",
+    [CABELO[0], CABELO[2], CABELO[3], UNHA[0], UNHA[1], CABELO[5]]),
+ "esmalteria-da-cleo": loja("Esmalteria da Cléo", "5511963364466", "img/logo.jpg", True, C("#c2577a","#fff","#ffe3ea","#6b1f3a","#b2416a","#fdeef3"),
+    "Unhas prontas pro Natal e pro Ano Novo com pacotes de fim de ano. Agende pelo WhatsApp.", H("unha-vermelha.jpg","Unhas vermelhas decoradas"),
+    STp("manicure.jpg","Manicure em atendimento","Unhas lindas pras festas"), "Lapa, São Paulo", UNHA),
+ "jaqueline-lima": loja("Jaqueline Lima Nail Designer", "5511930511271", "img/logo.jpg", True, C("#3a2a24","#fff","#e8c7a8","#3a2a24","#7a4f36","#f8f1ea"),
+    "Unhas leves, elegantes e atemporais pras festas. Agende pelo WhatsApp.", H("unha-rosa.jpg","Unhas rosadas naturais"),
+    STp("esmalte.jpg","Esmalte sendo aplicado","Especialista em naturalidade"), "São Paulo", UNHA),
+ "ana-paula-barth": loja("Ana Paula Barth Nails", "5511957957604", "img/logo.jpg", True, C("#2a2a2a","#fff","#d4b07a","#2a2a2a","#8a6a35","#f7f2ea"),
+    "Unhas impecáveis pras festas com pacotes de fim de ano. Agende pelo WhatsApp.", H("unha-rosa.jpg","Unhas rosadas"),
+    STp("manicure.jpg","Manicure em atendimento","Unhas na Lapa"), "Lapa, São Paulo", UNHA),
+ "wp-barber": loja("WP Barber", "5511992387574", "img/logo.jpg", False, C("#0d0d0d","#fff","#c9a35a","#0d0d0d","#9a7a35","#f5f1e8"),
+    "Corte e barba na régua pras festas com pacotes de fim de ano. Agende pelo WhatsApp.", H("barbearia.jpg","Barbearia com cadeiras clássicas"),
+    STp("barbeiro.jpg","Barbeiro atendendo cliente","Barbearia na Lapa"), "Lapa, São Paulo", BARBA),
+ "retro-22": loja("Retrô 22 Barbearia", "5511951933863", None, False, C("#3a2418","#fff","#e0a85a","#3a2418","#9a5f1f","#f8efe4"),
+    "Corte e barba pras festas com pacotes de fim de ano. Agende pelo WhatsApp.", H("barbearia-2.jpg","Barbearia com parede de tijolo"),
+    STp("barbeiro-2.jpg","Barbeiro penteando o cliente","Barbearia na Rua João Pereira"), "Rua João Pereira, 190, Lapa", BARBA),
+ "sanches-barbers": loja("Sanches Barber Shop", "5511947305575", "img/logo.jpg", False, C("#111111","#fff","#f2c14e","#111","#a87a12","#f8f3e4"),
+    "Corte e barba pras festas com pacotes de fim de ano. Agende pelo WhatsApp.", H("barbeiro.jpg","Barbeiro atendendo cliente"),
+    STp("barbearia.jpg","Barbearia","Antes e depois que dá orgulho"), "Lapa, São Paulo", BARBA),
+ "costureiras-12-de-outubro": loja("Costureiras 12 de Outubro", "5511918454502", None, False, C("#2f4a6d","#fff","#f6c453","#1f2f45","#2f4a6d","#eef3f9"),
+    "Ajustes e consertos pras roupas de festa com pacotes de fim de ano. Combine pelo WhatsApp.", H("costura.jpg","Peça na máquina de costura"),
+    STp("fitas.jpg","Fitas métricas","Roupa no ponto pro Natal"), "Rua Doze de Outubro, Lapa", COSTURA),
+ "solucoes-em-costura": loja("Sandra Soluções em Costura", "5511994767446", "img/logo.jpg", False, C("#7b1450","#fff","#f6e04a","#3d0a28","#7b1450","#fbeef5"),
+    "Ajustes, consertos e peças sob medida pras festas. Combine pelo WhatsApp.", H("costura.jpg","Peça na máquina de costura"),
+    STp("fitas.jpg","Fitas métricas","Conserto, confecção e reforma"), "Rua Guaricanga, 97, Lapa", COSTURA),
+ "angel-costuras": loja("Angel Costuras", "5511983456968", None, False, C("#3c5a8a","#fff","#ffd9e8","#2a3d5e","#3c5a8a","#eef2f9"),
+    "Ajustes e consertos pras roupas de festa com pacotes de fim de ano. Combine pelo WhatsApp.", H("maquina-costura.jpg","Máquina de costura"),
+    STp("costura.jpg","Costura na máquina","Sua roupa no ponto pras festas"), "Lapa, São Paulo", COSTURA),
+}
+for slug, l in LOJAS4.items():
+    html = tpl.replace("__TITULO__", "Fim de ano").replace("__NOME__", l["cfg"]["nome"]).replace("__CONFIG__", json.dumps(l["cfg"], ensure_ascii=False, indent=2))
+    for k, v in l["cores"].items():
+        html = html.replace("__" + k + "__", v)
+    Path(slug).mkdir(exist_ok=True)
+    Path(slug, "index.html").write_text(html)
+print("servicos", len(LOJAS4))
